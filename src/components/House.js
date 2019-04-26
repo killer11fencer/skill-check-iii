@@ -5,6 +5,13 @@ class House extends Component {
         return(
             <div>
 
+               <div>Property Name:{this.props.info.name}</div> 
+               <div>address:{this.props.info.address}</div> 
+               <div>City:{this.props.info.City}</div> 
+               <div>State:{this.props.info.State}</div> 
+               <div>Zip:{this.props.info.Zip}</div> 
+               <button>Delete</button>
+
             </div>
         )
     }
