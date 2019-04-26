@@ -6,9 +6,9 @@ import House from './House'
 
 export default (
     <Switch>
-        <Route component={Header}/>
+        <Route exact path='/' component={Header}/>
         <Route component={Dashboard}/>
-        <Route component={Wizard}/>
+        <Route path ='/wizard' component={Wizard}/>
         <Route component={House}/>
     </Switch>
 )
