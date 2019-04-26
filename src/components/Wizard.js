@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 class Wizard extends Component {
     constructor() {
@@ -11,13 +12,25 @@ class Wizard extends Component {
             state: '',
             Zip: 0
         }
+       this.createHouse = this.createHouse.bind(this)
+    }
+    createHouse() {
+        let {name,address,city,state,zip} = this.state
+        axios.put('/api/houses',{name,address,city,state,zip}).then(res=> {
+            this.setState({name: '',
+            address: '',
+            city: '',
+            state: '',
+            Zip: 0})
+            res.status(200)}).catch(err=>console.log('err on creation',err))
     }
     handleChanges = (e) => {
         const {name,value} = e.target
         this.setState({[name]: value})
     }
 
-    render() {
+
+    render() { 
         return(
             <div>
                 <Link to='/'><button>Cancel</button></Link>
