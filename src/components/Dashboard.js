@@ -1,19 +1,24 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios';
+
 import House from './House'
+import store from '../ducks/store'
 class Dashboard extends Component {
     constructor() {
         super();
+        const reduxState = store.getState()
         this.state = {
-            houses: [],
+            houses: reduxState.houses,
 
 
         }
     }
     componentDidMount () {
-        axios.get('/api/houses').then(res=> this.setState({houses: res.data})).catch(err=>console.log('get front end',err))
-    }
+       store.subscribe(() => {
+            const reduxState = store.getState()
+            this.setState({ houses: reduxState.houses})
+    })
+}
     render() { 
         let displayArr = this.state.houses.map((elem,index)=> {
             return  <div key={index}>HOUSE

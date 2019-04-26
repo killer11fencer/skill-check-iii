@@ -11,14 +11,14 @@ class Wizard extends Component {
          }
      
     }
-    componentDidMount() {
+    componentDidMount = () => {
         store.subscribe(() => {
             const reduxState = store.getState()
             this.setState({ img: reduxState.img
     })
 })
 }
-    addImg () {
+    addImg = () => {
         store.dispatch({
             type: IMG,
             payload: this.state.img
@@ -35,7 +35,7 @@ class Wizard extends Component {
         return(
             <div>
                 <Link to='/'><button>Cancel</button></Link>
-                <div>image URL <input name='img'onChange={this.handleChanges}></input></div>
+                <div>image URL <input name='img'value={this.state.img} onChange={this.handleChanges}></input></div>
                 <Link to='/wizard'><button>Previous</button></Link>
                 <Link to='/wizard/step2'><button onClick={this.addImg}>Next</button></Link>
             </div>

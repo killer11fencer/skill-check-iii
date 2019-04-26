@@ -11,6 +11,7 @@ const initialState = {
             mortgage: 0,
             rent: 0
 };
+export const GETHOUSE = 'GETHOUSE'
 export const HOUSE = 'HOUSE'
 export const IMG = 'IMG'
 export const MORTGAGE = 'MORTGAGE'
@@ -20,7 +21,9 @@ export const ADDHOUSE = 'ADDHOUSE'
 function reducer( state = initialState, action) {
     const {type,payload,name,address,city,states,zip} = action
     switch(type) {
-      
+        case GETHOUSE:
+        axios.get('/api/houses').then(results=> state.houses = results.data).catch(err=>console.log('redux get',err))
+        return state
         case HOUSE:
         return {...state, name: name,
         address: address,
@@ -53,7 +56,10 @@ function reducer( state = initialState, action) {
             mortgage,
             rent}
             const newHouse = [...state.houses,house]
-        return  axios.put('/api/houses',{...state,houses: newHouse}).then(res=> state.houses = res.data).catch(err=>console.log('err on creation',err))}
+        return  axios.post('/api/houses', {...state,houses:newHouse}).then(res=> state.houses = res.data).catch(err=>console.log('err on creation',err))
+            
+        }
+        
         default: 
         return state
        

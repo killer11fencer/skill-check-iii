@@ -4,7 +4,7 @@ class House extends Component {
     render() {
         return(
             <div>
-
+                <img src={this.props.info.img} alt='house'/>
                <div>Property Name:{this.props.info.name}</div> 
                <div>address:{this.props.info.address}</div> 
                <div>City:{this.props.info.City}</div> 

@@ -1,8 +1,8 @@
 module.exports = {
     createHouse(req,res) {
         const db = req.app.get('db')
-        const {name,address,city,state,zip,img, mortgage,rent } = req.body
-        db.add_house([name,address, city,state,zip,img, mortgage,rent]).then(result => {
+        const {name,address,city,states,zip,img, mortgage,rent } = req.body
+        db.add_house([name,address, city,states,zip,img, mortgage,rent]).then(result => {
             res.status(200).send(result)
         }).catch(err=>console.log('err on adding',err))
     },
