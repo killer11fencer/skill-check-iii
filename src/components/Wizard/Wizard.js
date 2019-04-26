@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import store, {ADDHOUSE} from '../../ducks/store'
+
 
 class Wizard extends Component {
     constructor() {
@@ -10,7 +12,8 @@ class Wizard extends Component {
             address: '',
             city: '',
             state: '',
-            Zip: 0
+            Zip: 0,
+            
         }
        this.createHouse = this.createHouse.bind(this)
     }
@@ -39,7 +42,7 @@ class Wizard extends Component {
                 <div>City<input name='city' onChange={this.handleChanges}></input></div>
                 <div>State<input name='state' onChange={this.handleChanges}></input></div>
                 <div>Zip<input name='zip' onChange={this.handleChanges}></input></div>
-                <Link to='/'><button>Complete</button></Link>
+                <Link to='/'><button>Next/button></Link>
             </div>
         )
     }
