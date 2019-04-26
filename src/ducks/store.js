@@ -1,39 +1,44 @@
 import {createStore} from 'redux'
-
+import axios from 'axios'
 const initialState = {
             houses: [],
             name: '',
             address: '',
             city: '',
-            state: '',
+            states: '',
             zip: 0,
             img: '',
             mortgage: 0,
             rent: 0
-}
+};
+export const HOUSE = 'HOUSE'
+export const IMG = 'IMG'
+export const MORTGAGE = 'MORTGAGE'
+export const RENT = 'RENT'
+export const ADDHOUSE = 'ADDHOUSE'
 
-
-function reducer(state = initialState,action) {
-    const {type,payload} = action
+function reducer( state = initialState, action) {
+    const {type,payload,name,address,city,states,zip} = action
     switch(type) {
+      
         case HOUSE:
-        return {...state,name: payload.name,
-        address: payload.address,
-        city: payload.city,
-        state: payload.state,
-        zip: payload.zip}
+        return {...state, name: name,
+        address: address,
+        city: city,
+        states: states,
+        zip: zip}
         case IMG:
         return {...state,img: payload}
         case MORTGAGE:
         return {...state, mortgage: payload}
         case RENT:
         return {...state, rent: payload}
-        case ADDHOUSE:
+        case ADDHOUSE: {
         const {
             name,
             address,
             city,
-            state,
+            states,
             zip,
             img,
             mortgage,
@@ -42,17 +47,16 @@ function reducer(state = initialState,action) {
         const house = {name,
             address,
             city,
-            state,
+            states,
             zip,
             img,
             mortgage,
             rent}
             const newHouse = [...state.houses,house]
-        return {...state,houses: newHouse}
-        case DELETEHOUSE:
-
-        default:
+        return  axios.put('/api/houses',{...state,houses: newHouse}).then(res=> state.houses = res.data).catch(err=>console.log('err on creation',err))}
+        default: 
         return state
+       
+        }
     }
-    }
-  
+  export default createStore(reducer)
