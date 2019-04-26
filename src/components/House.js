@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+
 class House extends Component {
     render() {
         return(
@@ -10,7 +11,8 @@ class House extends Component {
                <div>City:{this.props.info.city}</div> 
                <div>State:{this.props.info.state}</div> 
                <div>Zip:{this.props.info.zip}</div> 
-               <button>Delete</button>
+               
+               <button onClick={e => this.props.delete(this.props.info.id)}>Delete</button>
 
             </div>
         )

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import store, {ADDHOUSE, MORTGAGE} from '../../ducks/store'
+import store, {ADDHOUSE} from '../../ducks/store'
 
 class Wizard extends Component {
     constructor() {
@@ -23,18 +23,14 @@ class Wizard extends Component {
     addHouse = () => {
     store.dispatch({
         type: ADDHOUSE})
-    store.dispatch({   
-            type: MORTGAGE,
-            rent: this.state.rent,
-            mortgage: this.state.mortgage
-        })
+   
     this.setState({mortgage:0,
     rent:0})}
         
     handleChanges = (e) => {
         const {name,value} = e.target
         this.setState({[name]: value})
-        console.log(this.state.mortgage)
+       
         
     }
 

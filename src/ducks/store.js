@@ -53,10 +53,10 @@ function reducer( state = initialState, action) {
             mortgage,
             rent}
             const newHouse = [...state.houses,house]
-        return  axios.post('/api/houses', {...state,houses:newHouse}).then(res=> state.houses = res.data).catch(err=>console.log('err on creation',err))
-            
+        axios.post('/api/houses', {...state,houses:newHouse}).then(res=> state.houses = res.data).catch(err=>console.log('err on creation',err))
+        return {...state,name: '',address: '',city: '',states: '',zip: 0,img: '',mortgage: 0,rent: 0}
         }
-        
+       
         default: 
         return state
        

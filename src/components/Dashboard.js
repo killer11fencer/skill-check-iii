@@ -23,11 +23,20 @@ getHouses=()=> {
         payload: this.state.houses
     })
 }
+deleteHouse = (id) => {
+    axios.delete(`/api/houses/${id}`).then(res => {
+        this.setState({houses: res.data})}).catch(err=>console.log('err on delete',err))
+        store.dispatch({
+            type: GETHOUSES,
+            payload: this.state.houses
+        })
+    }
 
-    render() {   console.log('reduuuuuux',this.state.houses)
+
+    render() {  
         let displayArr = this.state.houses.map((elem,index)=> {
             return  <div key={index}>HOUSE
-            <House info={elem}/>
+            <House delete={this.deleteHouse} info={elem}/>
               </div>})
         return(
             <div>
